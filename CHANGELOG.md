@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Debian package ([#383](https://github.com/sipcapture/heplify/issues/383))**: the `.deb` now ships a dynamically linked binary built on Debian 12 (`scripts/build_deb_binary.sh`) that uses the system libpcap and libc, with `Depends: libc6 (>= 2.34), libpcap0.8 (>= 1.5.1)`, instead of the static binary with a bundled libpcap. libpcap fixes now come with `apt upgrade`, and the host's NSS/resolver is used. It requires Debian 12+ or Ubuntu 22.04+ (older systems can use the static binary from the release page). The rpm and the release binaries are unchanged (static).
 - **Release workflow ([#374](https://github.com/sipcapture/heplify/issues/374))**: resolve and validate the version once (the tag no longer reaches shell scripts through `${{ }}` interpolation), tag the Docker image `latest` only for stable versions, honor the `release` input of `workflow_dispatch`, drop the redundant `release: published` trigger, use least-privilege job permissions, publish a `SHA256SUMS` file with the release assets, and pass the architecture to nfpm through `ARCH` (`nfpm.yaml`: `arch: "${ARCH}"`) instead of patching the file with `sed`.
 
 ## [2.0.28] - 2026-09-04
