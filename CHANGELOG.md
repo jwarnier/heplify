@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Package checks ([#381](https://github.com/sipcapture/heplify/issues/381))**: new `Package check` workflow and `scripts/check_package.sh` that build the deb/rpm like the release and run static checks on them (contents/modes/owners against an expected list, `lintian`, `rpmlint`, `systemd-analyze verify` on the unit, `shellcheck` on the maintainer scripts). Known lintian/rpmlint findings are listed in `scripts/package/`.
+
 ### Changed
 
 - **Packaging ([#366](https://github.com/sipcapture/heplify/issues/366))**: the deb/rpm packages now create a `heplify` system user and ship `postinstall`/`preremove`/`postremove` scripts (creates `/var/lib/heplify`, daemon-reload, restart on upgrade, stop and disable on removal, state directory cleanup on purge). The systemd unit runs as `heplify` with only `CAP_NET_RAW`/`CAP_NET_ADMIN`, sandboxing options, `StateDirectory=heplify` as working directory and `After=network-online.target`; `/etc/heplify/heplify.json` is now mode 0640 (`root:heplify`). Configurations that write outside `/var/lib/heplify` need a `ReadWritePaths=` drop-in. The unit is now installed to `/usr/lib/systemd/system/heplify.service` (was `/etc/systemd/system/`, which is reserved for local administration); upgrading removes the old file, so move any local edits to a drop-in (`systemctl edit heplify`) beforehand.
