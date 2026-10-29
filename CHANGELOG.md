@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Docker ([#368](https://github.com/sipcapture/heplify/issues/368))**: the image is now based on Debian 13 (trixie) by default (`--build-arg DEBIAN_RELEASE=bookworm` or any other release still works) and runs as the unprivileged `heplify` user with `CAP_NET_RAW`/`CAP_NET_ADMIN` as file capabilities, so both must be granted with `cap_add` (`--user root` restores the old behaviour). Added `.dockerignore`, BuildKit cache mounts, OCI labels and a CI job building the image for trixie and bookworm. `docker/docker-compose.yml` is replaced by `docker/compose.yaml`, which now works from a fresh clone (the missing `./config/` mounts and the obsolete `version:` key are gone); use `docker compose -f docker/compose.yaml up`.
+
 ## [2.0.28] - 2026-09-04
 
 ### Fixed
