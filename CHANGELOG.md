@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Release workflow ([#374](https://github.com/sipcapture/heplify/issues/374))**: resolve and validate the version once (the tag no longer reaches shell scripts through `${{ }}` interpolation), tag the Docker image `latest` only for stable versions, honor the `release` input of `workflow_dispatch`, drop the redundant `release: published` trigger, use least-privilege job permissions, publish a `SHA256SUMS` file with the release assets, and pass the architecture to nfpm through `ARCH` (`nfpm.yaml`: `arch: "${ARCH}"`) instead of patching the file with `sed`.
 
+### Fixed
+
+- **Homebrew formula ([#370](https://github.com/sipcapture/heplify/issues/370))**: bump `Formula/heplify.rb` from 2.0.17 to 2.0.28, fail clearly on unsupported platforms (`depends_on arch: :arm64` / `:macos`), add a `livecheck` block, and add `scripts/update_formula.sh` to bump the URL and sha256 from a release.
+
 ## [2.0.28] - 2026-09-04
 
 ### Fixed
