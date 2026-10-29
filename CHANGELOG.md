@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **README ([#372](https://github.com/sipcapture/heplify/issues/372))**: document installing, configuring and removing the deb/rpm packages.
+
 ## [2.0.28] - 2026-09-04
 
 ### Fixed
