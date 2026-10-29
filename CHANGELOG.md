@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **Dependabot ([#376](https://github.com/sipcapture/heplify/issues/376))**: weekly version updates for Go modules (minor/patch grouped) and GitHub Actions, with the existing `chore(deps)` commit prefix.
+- **Dependabot ([#376](https://github.com/sipcapture/heplify/issues/376))**: weekly version updates for Go modules (minor/patch grouped) and GitHub Actions, with the existing `chore(deps)` commit prefix. All GitHub Actions are now pinned by commit SHA (with the version in a comment), which Dependabot keeps up to date.
 
 ## [2.0.28] - 2026-09-04
 
